@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
                        Tracking SDK
                        DESC
   s.homepage         = 'https://github.com/skingithub/clickzin_iOS_tracking.git'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
+  s.license          = 'MIT'
   s.source           = { :git => 'https://github.com/skingithub/clickzin_iOS_tracking.git', :tag => s.version.to_s }
   s.platform         = :ios, '12.0'
   s.source_files     = 'Clickzin_iOS_tracking/**/*.{swift}'
