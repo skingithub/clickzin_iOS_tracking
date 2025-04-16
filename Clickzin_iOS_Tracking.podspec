@@ -10,5 +10,6 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/skingithub/clickzin_iOS_tracking.git', :tag => s.version.to_s }
   s.platform         = :ios, '12.0'
   s.source_files     = 'Clickzin_iOS_tracking/**/*.{swift}'
+  s.author = "skingithub"
   s.swift_version    = '5.0'
 end
