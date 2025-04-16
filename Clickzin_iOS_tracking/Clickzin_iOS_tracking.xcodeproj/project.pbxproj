@@ -6,34 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		CB9E807F2DAD342F00CB0A2F /* Clickzin_iOS_tracking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB9E80752DAD342E00CB0A2F /* Clickzin_iOS_tracking.framework */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		CB9E80802DAD342F00CB0A2F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CB9E806C2DAD342E00CB0A2F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CB9E80742DAD342E00CB0A2F;
-			remoteInfo = Clickzin_iOS_tracking;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		CB9E80752DAD342E00CB0A2F /* Clickzin_iOS_tracking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Clickzin_iOS_tracking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB9E807E2DAD342F00CB0A2F /* Clickzin_iOS_trackingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Clickzin_iOS_trackingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CB9E80772DAD342E00CB0A2F /* Clickzin_iOS_tracking */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Clickzin_iOS_tracking;
-			sourceTree = "<group>";
-		};
-		CB9E80822DAD342F00CB0A2F /* Clickzin_iOS_trackingTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = Clickzin_iOS_trackingTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -46,14 +26,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB9E807B2DAD342F00CB0A2F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CB9E807F2DAD342F00CB0A2F /* Clickzin_iOS_tracking.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -61,7 +33,6 @@
 			isa = PBXGroup;
 			children = (
 				CB9E80772DAD342E00CB0A2F /* Clickzin_iOS_tracking */,
-				CB9E80822DAD342F00CB0A2F /* Clickzin_iOS_trackingTests */,
 				CB9E80762DAD342E00CB0A2F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,7 +41,6 @@
 			isa = PBXGroup;
 			children = (
 				CB9E80752DAD342E00CB0A2F /* Clickzin_iOS_tracking.framework */,
-				CB9E807E2DAD342F00CB0A2F /* Clickzin_iOS_trackingTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -111,29 +81,6 @@
 			productReference = CB9E80752DAD342E00CB0A2F /* Clickzin_iOS_tracking.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		CB9E807D2DAD342F00CB0A2F /* Clickzin_iOS_trackingTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CB9E808A2DAD342F00CB0A2F /* Build configuration list for PBXNativeTarget "Clickzin_iOS_trackingTests" */;
-			buildPhases = (
-				CB9E807A2DAD342F00CB0A2F /* Sources */,
-				CB9E807B2DAD342F00CB0A2F /* Frameworks */,
-				CB9E807C2DAD342F00CB0A2F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CB9E80812DAD342F00CB0A2F /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				CB9E80822DAD342F00CB0A2F /* Clickzin_iOS_trackingTests */,
-			);
-			name = Clickzin_iOS_trackingTests;
-			packageProductDependencies = (
-			);
-			productName = Clickzin_iOS_trackingTests;
-			productReference = CB9E807E2DAD342F00CB0A2F /* Clickzin_iOS_trackingTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -145,9 +92,6 @@
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
 					CB9E80742DAD342E00CB0A2F = {
-						CreatedOnToolsVersion = 16.3;
-					};
-					CB9E807D2DAD342F00CB0A2F = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
@@ -167,20 +111,12 @@
 			projectRoot = "";
 			targets = (
 				CB9E80742DAD342E00CB0A2F /* Clickzin_iOS_tracking */,
-				CB9E807D2DAD342F00CB0A2F /* Clickzin_iOS_trackingTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		CB9E80732DAD342E00CB0A2F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CB9E807C2DAD342F00CB0A2F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -197,22 +133,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CB9E807A2DAD342F00CB0A2F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		CB9E80812DAD342F00CB0A2F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CB9E80742DAD342E00CB0A2F /* Clickzin_iOS_tracking */;
-			targetProxy = CB9E80802DAD342F00CB0A2F /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		CB9E80852DAD342F00CB0A2F /* Debug */ = {
@@ -404,36 +325,6 @@
 			};
 			name = Release;
 		};
-		CB9E808B2DAD342F00CB0A2F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sk.Clickzin-iOS-trackingTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CB9E808C2DAD342F00CB0A2F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sk.Clickzin-iOS-trackingTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -451,15 +342,6 @@
 			buildConfigurations = (
 				CB9E80882DAD342F00CB0A2F /* Debug */,
 				CB9E80892DAD342F00CB0A2F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CB9E808A2DAD342F00CB0A2F /* Build configuration list for PBXNativeTarget "Clickzin_iOS_trackingTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CB9E808B2DAD342F00CB0A2F /* Debug */,
-				CB9E808C2DAD342F00CB0A2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
