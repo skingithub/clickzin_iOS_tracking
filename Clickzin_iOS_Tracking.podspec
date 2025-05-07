@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Clickzin_iOS_Tracking'
-  s.version          = '0.4.0'
+  s.version          = '0.5.0'
   s.summary          = 'Tracking SDK'
   s.description      = <<-DESC
                        Tracking SDK for mobile app

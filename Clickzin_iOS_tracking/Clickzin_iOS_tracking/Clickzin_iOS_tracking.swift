@@ -1,6 +1,7 @@
 import Foundation
-import UIKit
 import CryptoKit
+import UIKit
+import SystemConfiguration.CaptiveNetwork
 
 // MARK: - Tracking Error
 public enum TrackingError: LocalizedError {
@@ -21,7 +22,6 @@ public enum TrackingError: LocalizedError {
 
 // MARK: - Constants
 fileprivate enum Constants {
-    static let IP_API_URL = "https://api64.ipify.org?format=json"
     static let TRACKING_BASE_URL = "https://tracking.kalpssoft.com"
     static let TRACKING_IOS_POSTBACK_URL = "\(TRACKING_BASE_URL)/postback/ios"
     static let TEST_UID = "testing"
@@ -148,20 +148,22 @@ public final class ClickzinTracking {
     private static func fetchIPAndInitiateTracking(
         callback: ((Result<Void, Error>) -> Void)?
     ) {
-        Utils.sendAPIRequest(urlString: Constants.IP_API_URL, parameters: [:]) { response in
-            if let error = response.error {
-                callback?(.failure(error))
-                return
-            }
-            
-            do {
-                let (ip, ua) = try extractIPAndUA(from: response.data)
-                let hash = generateHash(ip: ip, userAgent: ua)
-                initiateTracking(with: hash, callback: callback)
-            } catch {
-                callback?(.failure(error))
-            }
+        
+        let ipaddresses = Utils.getAllIPAddresses()
+        let ua = UIDevice.current.systemName + " " + UIDevice.current.systemVersion
+        
+        var ip = "N"
+        if let wifiIP = ipaddresses["en0"] {
+            log("Wi-Fi IP: \(wifiIP)")
+            ip = wifiIP
         }
+        if let cellularIP = ipaddresses["pdp_ip0"] {
+            log("Cellular IP: \(cellularIP)")
+            ip = ip + cellularIP
+        }
+        
+        let hash = generateHash(ip: ip, userAgent: ua)
+        initiateTracking(with: hash, callback: callback)
     }
     
     private static func extractIPAndUA(from data: Data?) throws -> (String, String) {
@@ -183,6 +185,7 @@ public final class ClickzinTracking {
         
         Utils.sendAPIRequest(urlString: trackingUrl, parameters: [:]) { response in
             if let error = response.error {
+                log("Error \(error)")
                 callback?(.failure(error))
                 return
             }
@@ -196,26 +199,16 @@ public final class ClickzinTracking {
     }
     
     private static func processTrackingResponse(_ data: Data?) throws {
-        //        guard let data = data,
-        //              let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
-        //              let fetchedUid = json["utm_uid"] as? String,
-        //              let fetchedSource = json["utm_source"] as? String,
-        //              fetchedSource.lowercased().contains("clickzin") else {
-        //            throw TrackingError.noMatchingReferrer
-        //        }
-        //
-        //        uid = fetchedUid
-        //        source = fetchedSource
-        
+
         guard let data = data,
               let response = String(data: data, encoding: .utf8),
               response.contains("true")  else {
             throw TrackingError.noMatchingReferrer
         }
+        log("Response \(response)")
     }
     
 
-    
     private static func sendTracking(
         callback: ((Result<Void, Error>) -> Void)?
     ) {
@@ -334,7 +327,7 @@ public final class ClickzinTracking {
         }
         
         // MARK: - App Info
-        public static func appName() -> String {
+        fileprivate static func appName() -> String {
             Bundle.main.infoDictionary?["CFBundleDisplayName"] as? String ??
             Bundle.main.infoDictionary?["CFBundleName"] as? String ??
             "No Name Found"
@@ -345,6 +338,40 @@ public final class ClickzinTracking {
             let device = UIDevice.current
             return "\(device.systemName)/\(device.systemVersion) (\(device.model))"
         }
+        
+
+        fileprivate static func getAllIPAddresses() -> [String: String] {
+            var addresses: [String: String] = [:]
+            var ifaddr: UnsafeMutablePointer<ifaddrs>? = nil
+
+            guard getifaddrs(&ifaddr) == 0, let firstAddr = ifaddr else { return addresses }
+
+            for ptr in sequence(first: firstAddr, next: { $0.pointee.ifa_next }) {
+                let interface = ptr.pointee
+                let addrFamily = interface.ifa_addr.pointee.sa_family
+
+                if addrFamily == UInt8(AF_INET) { // IPv4 only, or add || addrFamily == UInt8(AF_INET6) for IPv6
+                    let name = String(cString: interface.ifa_name)
+                    var hostname = [CChar](repeating: 0, count: Int(NI_MAXHOST))
+                    getnameinfo(interface.ifa_addr,
+                                socklen_t(interface.ifa_addr.pointee.sa_len),
+                                &hostname,
+                                socklen_t(hostname.count),
+                                nil,
+                                socklen_t(0),
+                                NI_NUMERICHOST)
+
+                    let ip = String(cString: hostname)
+                    addresses[name] = ip
+                }
+            }
+
+            freeifaddrs(ifaddr)
+            return addresses
+        }
+
+
+
     }
 }
 
@@ -368,3 +395,4 @@ public enum NetworkError: LocalizedError {
         }
     }
 }
+
